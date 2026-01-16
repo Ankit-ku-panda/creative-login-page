@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#25283B">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>My Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons button {
+            padding: 8px 20px;
+            background: #25283B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-section h1 {
+            color: #25283B;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .intro-section p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .filter-tag {
+            padding: 8px 16px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .projects-section {
+            margin-bottom: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .project-title {
+            font-size: 1.4em;
+            color: #25283B;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            color: #999;
+            font-size: 1.1em;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .intro-section h1 {
+                font-size: 1.8em;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">Portfolio</div>
+            <div class="nav-buttons">
+                <button onclick="goBack()">Back to Login</button>
+                <button onclick="scrollToProjects()">View Projects</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h1>Welcome to My Portfolio 🎨</h1>
+            <p>Explore my projects and find exactly what you're looking for</p>
+            
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput" 
+                    placeholder="Search projects by name, technology, or description..."
+                    onkeyup="filterProjects()"
+                >
+            </div>
+
+            <div class="filter-tags">
+                <span class="filter-tag active" onclick="filterByCategory('all')">All</span>
+                <span class="filter-tag" onclick="filterByCategory('web')">Web Design</span>
+                <span class="filter-tag" onclick="filterByCategory('3d')">3D Graphics</span>
+                <span class="filter-tag" onclick="filterByCategory('app')">App Development</span>
+                <span class="filter-tag" onclick="filterByCategory('ui')">UI/UX</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">Featured Projects</h2>
+
+        <div class="projects-section">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded here by JavaScript -->
+            </div>
+            <div class="no-results" id="noResults" style="display: none;">
+                No projects found. Try adjusting your search.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample projects data
+        const projects = [
+            {
+                id: 1,
+                title: "3D Web Design",
+                category: "web",
+                description: "Interactive 3D carousel with CSS transforms and JavaScript animations. Perfect for showcasing products or portfolios.",
+                icon: "🎡",
+                technologies: ["HTML", "CSS", "JavaScript"]
+            },
+            {
+                id: 2,
+                title: "E-Commerce Platform",
+                category: "app",
+                description: "Full-stack e-commerce application with payment integration and user authentication.",
+                icon: "🛒",
+                technologies: ["React", "Node.js", "MongoDB"]
+            },
+            {
+                id: 3,
+                title: "3D Model Viewer",
+                category: "3d",
+                description: "Advanced 3D model viewer with interactive controls and real-time rendering.",
+                icon: "🎯",
+                technologies: ["Three.js", "WebGL"]
+            },
+            {
+                id: 4,
+                title: "Mobile App Design",
+                category: "ui",
+                description: "Beautiful and intuitive mobile app interface with smooth animations and modern design patterns.",
+                icon: "📱",
+                technologies: ["Figma", "UI Design"]
+            },
+            {
+                id: 5,
+                title: "Dashboard Analytics",
+                category: "web",
+                description: "Real-time analytics dashboard with data visualization and interactive charts.",
+                icon: "📊",
+                technologies: ["React", "Chart.js", "API"]
+            },
+            {
+                id: 6,
+                title: "AR Experience",
+                category: "3d",
+                description: "Augmented Reality experience for mobile devices with object tracking and interaction.",
+                icon: "🥽",
+                technologies: ["AR.js", "Three.js"]
+            },
+            {
+                id: 7,
+                title: "Social Media Platform",
+                category: "app",
+                description: "Full-featured social media platform with real-time messaging and user interactions.",
+                icon: "💬",
+                technologies: ["React", "Firebase", "Socket.io"]
+            },
+            {
+                id: 8,
+                title: "Landing Page Design",
+                category: "ui",
+                description: "Modern and responsive landing page with smooth scrolling and engaging animations.",
+                icon: "🎨",
+                technologies: ["HTML", "CSS", "JavaScript"]
+            }
+        ];
+
+        let filteredProjects = [...projects];
+        let currentCategory = 'all';
+
+        function renderProjects(projectsToRender) {
+            const grid = document.getElementById('projectsGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (projectsToRender.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            grid.innerHTML = projectsToRender.map(project => `
+                <div class="project-card">
+                    <div class="project-image">${project.icon}</div>
+                    <div class="project-content">
+                        <span class="project-category">${project.category.toUpperCase()}</span>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
+                            ${project.technologies.map(tech => `
+                                <span style="font-size: 0.8em; background: #f0f0f0; padding: 3px 8px; border-radius: 10px; color: #666;">
+                                    ${tech}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredProjects = projects.filter(project => {
+                const matchesSearch = 
+                    project.title.toLowerCase().includes(searchTerm) ||
+                    project.description.toLowerCase().includes(searchTerm) ||
+                    project.technologies.some(tech => tech.toLowerCase().includes(searchTerm));
+
+                const matchesCategory = currentCategory === 'all' || project.category === currentCategory;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            renderProjects(filteredProjects);
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+
+            // Update active tag styling
+            document.querySelectorAll('.filter-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            filterProjects();
+        }
+
+        function scrollToProjects() {
+            document.querySelector('.projects-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // Initial render
+        renderProjects(projects);
+    </script>
+
+        <script>
+            // Register service worker on dashboard page as well
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('Service Worker registered on dashboard:', reg.scope))
+                    .catch(err => console.warn('SW registration failed (dashboard):', err));
+            }
+        </script>
+
+</body>
+</html>
+
