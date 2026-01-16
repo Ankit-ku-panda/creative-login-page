@@ -27,11 +27,3 @@ A modern, sleek, and highly interactive login interface designed to enhance user
 - **JavaScript (ES6):** Dynamic interaction and form handling.
 
 ---
-
-## 🚀 Getting Started
-
-Follow these steps to get a local copy up and running:
-
-1. **Clone the repository**
-   ```bash
-   git clone [https://github.com/Ankit-ku-panda/creative-login-page.git](https://github.com/Ankit-ku-panda/creative-login-page.git)
