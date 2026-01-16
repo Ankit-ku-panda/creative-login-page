@@ -10,15 +10,6 @@ A modern, sleek, and highly interactive login interface designed to enhance user
 
 ---
 
-## 📸 Preview
-
-<div align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJmZzI5bmN4ZzR0bmR6dzR4bmR6dzR4bmR6dzR4bmR6dzR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMGpxPucR9E0m4/giphy.gif" width="600" alt="Login Page Demo">
-  <p><em>Example of the interactive UI (Replace this with your actual project GIF/Screenshot)</em></p>
-</div>
-
----
-
 ## ✨ Key Features
 
 - 📱 **Fully Responsive:** Adapts perfectly to desktops, tablets, and mobile screens.
